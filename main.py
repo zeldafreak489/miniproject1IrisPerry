@@ -22,6 +22,12 @@ import yfinance as yf
 import matplotlib.pyplot as plt
 import numpy as np
 import copy
+from pathlib import Path
+
+# Create charts folder if it does not exist
+charts = Path('charts')
+if not charts.exists():
+    Path(r'charts').mkdir()
 
 mystocks = ['MSFT', 'AAPL', 'GOOG', 'NVDA', 'WMT']
 mystockdata = {}
@@ -40,7 +46,7 @@ for stock in mystocks:
     hl = copy.copy(mystockdata[stock])
     hl.sort()
 
-    # Generate graphs
+    # Generate and save graphs
     plt.plot(mystock)
     plt.title(stock)
     plt.axis((0, 10, hl[0]-10, hl[-1]+10))
